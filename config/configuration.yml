@@ -1,0 +1,58 @@
+---
+###############################################################
+#                   Authelia configuration                    #
+###############################################################
+
+server:
+  address: 'tcp://:9091'
+
+log:
+  level: 'debug'
+
+totp:
+  issuer: 'authelia.com'
+
+authentication_backend:
+  ldap:
+    address: 'ldap://ldap'
+  password_reset:
+    disable: true
+
+access_control:
+  default_policy: 'deny'
+  rules:
+    - domain: 'sso.mind-hochschul-netzwerk.de'
+      policy: 'one_factor'
+
+session:
+  cookies:
+    - name: 'authelia_session'
+      domain: 'mind-hochschul-netzwerk.de'  # Should match whatever your root protected domain is
+      authelia_url: 'https://sso.mind-hochschul-netzwerk.de'
+      expiration: '1 hour'
+      inactivity: '5 minutes'
+
+  redis:
+    host: 'redis'
+    port: 6379
+    # This secret can also be set using the env variables AUTHELIA_SESSION_REDIS_PASSWORD_FILE
+    # password: authelia
+
+regulation:
+  max_retries: 3
+  find_time: '2 minutes'
+  ban_time: '5 minutes'
+
+storage:
+  postgres:
+    address: 'tcp://db:5432'
+    schema: 'public'
+
+#notifier:
+#  smtp:
+#    username: 'test'
+#    # This secret can also be set using the env variables AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE
+#    password: 'password'
+#    address: 'smtp://mail.exmaple.com:25'
+#    sender: 'admin@example.com'
+...
