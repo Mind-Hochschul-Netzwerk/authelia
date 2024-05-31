@@ -69,3 +69,4 @@ identity_providers:
           - profile
           - email
         authorization_policy: 'two_factor'
+        consent_mode: implicit
