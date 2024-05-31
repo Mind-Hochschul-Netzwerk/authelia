@@ -62,7 +62,7 @@ identity_providers:
         client_secret: '$pbkdf2-sha512$310000$jhKEKG9fPiTzasuQJ2tr5g$C7GOhzoL0D7c64hlmCq0poC5CUARN3b7zKNm6dAo7R9fBDqNdy4duU3UxqrU5dZh.rlmQ5M2uW5l3geOnjLcCA'
         public: false
         redirect_uris:
-          - 'https://paperless.mind-hochschul-netzwerk.de/oauth2/callback'
+          - 'https://paperless.mind-hochschul-netzwerk.de/accounts/oidc/authelia/login/callback/'
         scopes:
           - openid
           - groups
