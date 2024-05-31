@@ -1,3 +1,4 @@
+---
 server:
   address: 'tcp://:9091'
 
@@ -22,7 +23,7 @@ access_control:
 session:
   cookies:
     - name: 'authelia_session'
-      domain: 'mind-hochschul-netzwerk.de'  # Should match whatever your root protected domain is
+      domain: 'mind-hochschul-netzwerk.de'
       authelia_url: 'https://sso.mind-hochschul-netzwerk.de'
       expiration: '1 hour'
       inactivity: '5 minutes'
@@ -30,8 +31,6 @@ session:
   redis:
     host: 'redis'
     port: 6379
-    # This secret can also be set using the env variables AUTHELIA_SESSION_REDIS_PASSWORD_FILE
-    # password: authelia
 
 regulation:
   max_retries: 3
@@ -46,7 +45,7 @@ storage:
 identity_providers:
   oidc:
     jwks:
-      - key: '{{ secret "/config/secrets/oidc/jwks/rsa.2048.key" | mindent 10 "|" | msquote }}'
+      - key: {{ secret "/config/secrets/oidc/jwks/rsa.2048.key" | mindent 10 "|" | msquote }}
     authorization_policies:
       policy_name:
         default_policy: 'two_factor'
@@ -67,11 +66,3 @@ identity_providers:
           - 'https://paperless.mind-hochschul-netzwerk.de/oauth2/callback'
         authorization_policy: 'two_factor'
         jwks_uri: ''
-
-#notifier:
-#  smtp:
-#    username: 'test'
-#    # This secret can also be set using the env variables AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE
-#    password: 'password'
-#    address: 'smtp://mail.exmaple.com:25'
-#    sender: 'admin@example.com'
