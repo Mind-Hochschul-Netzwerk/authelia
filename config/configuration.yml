@@ -19,7 +19,7 @@ authentication_backend:
     disable: true
 
 access_control:
-  default_policy: 'deny'
+  default_policy: 'one_factor'
   rules:
     - domain: 'sso.mind-hochschul-netzwerk.de'
       policy: 'one_factor'
@@ -52,12 +52,9 @@ identity_providers:
   oidc:
     jwks:
       - key: {{ secret "/config/secrets/oidc/jwks/rsa.2048.key" | mindent 10 "|" | msquote }}
-#    authorization_policies:
-#      policy_name:
-#        default_policy: 'two_factor'
-#        rules:
-#          - policy: 'deny'
-#            subject: 'group:services'
+    authorization_policies:
+      policy_name:
+        default_policy: 'two_factor'
     cors:
       endpoints:
         - 'authorization'
@@ -66,7 +63,6 @@ identity_providers:
         - 'introspection'
         - 'userinfo'
       allowed_origins_from_client_redirect_uris: true
-
     clients:
       - client_id: 'paperless'
         client_name: 'Paperless'
