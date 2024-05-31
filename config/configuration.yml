@@ -48,9 +48,6 @@ identity_providers:
   oidc:
     jwks:
       - key: {{ secret "/config/secrets/oidc/jwks/rsa.2048.key" | mindent 10 "|" | msquote }}
-    authorization_policies:
-      policy_name:
-        default_policy: 'two_factor'
     cors:
       endpoints:
         - 'authorization'
