@@ -1,4 +1,6 @@
 ---
+# yaml-language-server: $schema=https://www.authelia.com/schemas/v4.38/json-schema/configuration.json
+
 server:
   address: 'tcp://:9091'
 
@@ -64,5 +66,9 @@ identity_providers:
         public: false
         redirect_uris:
           - 'https://paperless.mind-hochschul-netzwerk.de/oauth2/callback'
+        scopes:
+          - openid
+          - groups
+          - profile
+          - email
         authorization_policy: 'two_factor'
-        jwks_uri: ''
