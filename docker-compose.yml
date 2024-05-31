@@ -24,6 +24,7 @@ services:
       disable: true
     environment:
       - TZ=Europe/Berlin
+      - X_AUTHELIA_CONFIG_FILTERS=template
     env_file:
       - .env
 
