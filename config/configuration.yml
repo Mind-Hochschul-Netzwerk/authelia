@@ -21,7 +21,11 @@ access_control:
   rules:
     - domain: 'sso.mind-hochschul-netzwerk.de'
       policy: 'one_factor'
-
+    - domain: 'paperless.mind-hochschul-netzwerk.de'
+      policy: 'two_factor'
+      subject:
+      - ['group:finanzteam']
+      - ['group:vorstand']
 session:
   cookies:
     - name: 'authelia_session'
