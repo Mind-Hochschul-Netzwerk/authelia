@@ -28,6 +28,8 @@ prod: check-traefik
 	docker compose up -d --pull always --force-recreate --remove-orphans
 
 upgrade:
+	docker compose stop
+	sudo chown -R deployer:deployer config/
 	git pull
 	make prod
 

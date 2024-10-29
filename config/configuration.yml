@@ -61,16 +61,29 @@ identity_providers:
         - 'userinfo'
       allowed_origins_from_client_redirect_uris: true
     clients:
-      - client_id: 'paperless'
-        client_name: 'Paperless'
+      - client_id: paperless
+        client_name: Paperless
         client_secret: '$pbkdf2-sha512$310000$jhKEKG9fPiTzasuQJ2tr5g$C7GOhzoL0D7c64hlmCq0poC5CUARN3b7zKNm6dAo7R9fBDqNdy4duU3UxqrU5dZh.rlmQ5M2uW5l3geOnjLcCA'
         public: false
         redirect_uris:
-          - 'https://paperless.mind-hochschul-netzwerk.de/accounts/oidc/authelia/login/callback/'
+          - https://paperless.mind-hochschul-netzwerk.de/accounts/oidc/authelia/login/callback/
         scopes:
           - openid
           - groups
           - profile
           - email
         authorization_policy: 'two_factor'
+        consent_mode: implicit
+      - client_id: vikunja
+        client_name: Vikunja
+        client_secret: '$pbkdf2-sha512$310000$t7n/rKN4K.PSS0ZTbKOi2w$ZlDO/9dLw/DdjcywSoqtZvG2bdsjHAVOCOUSojzhnBSkUqdkw9418c90MjfdEZmslHfuDIiqvdKymRAbTqBcxw'
+        public: false
+        redirect_uris:
+          - https://vikunja.mind-hochschul-netzwerk.de/auth/openid/
+        scopes:
+          - openid
+          - groups
+          - profile
+          - email
+        authorization_policy: 'one_factor'
         consent_mode: implicit
