@@ -79,8 +79,20 @@ identity_providers:
         client_secret: '$pbkdf2-sha512$310000$t7n/rKN4K.PSS0ZTbKOi2w$ZlDO/9dLw/DdjcywSoqtZvG2bdsjHAVOCOUSojzhnBSkUqdkw9418c90MjfdEZmslHfuDIiqvdKymRAbTqBcxw'
         public: false
         redirect_uris:
-          - https://vikunja.mind-hochschul-netzwerk.de/auth/openid/mhnsso
           - https://tasks.mind-hochschul-netzwerk.de/auth/openid/mhnsso
+        scopes:
+          - openid
+          - groups
+          - profile
+          - email
+        authorization_policy: 'one_factor'
+        consent_mode: implicit
+      - client_id: listmonk
+        client_name: Listmonk
+        client_secret: '$pbkdf2-sha512$310000$kRYbrVxIRLs05fpBxWnHAg$BQhM.02g075fK2uxPtlXJanqh6yyuDbYC2Ybr.JxvmPQGKjkNpUCJNWOjTkKFNbmm8BWYTjBOrCRK3hizd6UIw'
+        public: false
+        redirect_uris:
+          - https://listmonk.mind-hochschul-netzwerk.de/auth/oidc
         scopes:
           - openid
           - groups
