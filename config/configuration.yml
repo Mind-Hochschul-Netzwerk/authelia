@@ -75,6 +75,7 @@ identity_providers:
           - email
         authorization_policy: 'two_factor'
         consent_mode: implicit
+
       - client_id: vikunja
         client_name: Vikunja
         client_secret: '$pbkdf2-sha512$310000$t7n/rKN4K.PSS0ZTbKOi2w$ZlDO/9dLw/DdjcywSoqtZvG2bdsjHAVOCOUSojzhnBSkUqdkw9418c90MjfdEZmslHfuDIiqvdKymRAbTqBcxw'
@@ -88,6 +89,7 @@ identity_providers:
           - email
         authorization_policy: 'one_factor'
         consent_mode: implicit
+
       - client_id: listmonk
         client_name: Listmonk
         client_secret: '$pbkdf2-sha512$310000$kRYbrVxIRLs05fpBxWnHAg$BQhM.02g075fK2uxPtlXJanqh6yyuDbYC2Ybr.JxvmPQGKjkNpUCJNWOjTkKFNbmm8BWYTjBOrCRK3hizd6UIw'
@@ -106,3 +108,19 @@ identity_providers:
           - 'authorization_code'
         response_types:
           - code
+
+      - client_id: outline
+        client_name: Outline
+        client_secret: $pbkdf2-sha512$310000$hsGOwPixAQvtc2U0kNRtkg$862jrdsi6nImDi5Y7qo2BTDpm8fVAxZ1QjYsXHNlu5WT0FlBMbjXBuRBIYpLbE.TdIQkSk5g9dF1uQVRTZ8fwA
+        public: false
+        redirect_uris:
+          - https://wiki.mind-hochschul-netzwerk.de/auth/oidc.callback
+        scopes:
+          - 'openid'
+          - 'offline_access'
+          - 'profile'
+          - 'email'
+        authorization_policy: two_factor
+        consent_mode: implicit
+        userinfo_signed_response_alg: 'none'
+        token_endpoint_auth_method: 'client_secret_post'
