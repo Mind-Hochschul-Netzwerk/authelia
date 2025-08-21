@@ -81,7 +81,7 @@ identity_providers:
         client_secret: '$pbkdf2-sha512$310000$t7n/rKN4K.PSS0ZTbKOi2w$ZlDO/9dLw/DdjcywSoqtZvG2bdsjHAVOCOUSojzhnBSkUqdkw9418c90MjfdEZmslHfuDIiqvdKymRAbTqBcxw'
         public: false
         redirect_uris:
-          - https://tasks.mind-hochschul-netzwerk.de/auth/openid/mhnsso
+          - https://tasks.mind-hochschul-netzwerk.de/auth/openid/authelia
         scopes:
           - openid
           - groups
