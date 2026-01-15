@@ -12,7 +12,9 @@ totp:
 
 authentication_backend:
   ldap:
-    address: 'ldap://ldap'
+    address: 'ldaps://ldap'
+    tls:
+      skip_verify: true
     base_dn: 'dc=mind-hochschul-netzwerk,dc=de'
     user: 'cn=admin,dc=mind-hochschul-netzwerk,dc=de'
     additional_users_dn: 'ou=people'
