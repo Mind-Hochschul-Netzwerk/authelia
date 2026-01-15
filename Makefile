@@ -5,23 +5,14 @@ ifeq (,$(shell docker ps -f name=^traefik$$ -q))
 	$(error docker container traefik is not running)
 endif
 
-image:
-	@echo "(Re)building docker image"
-	docker build --no-cache -t local/$(SERVICENAME):latest .
+config/secrets/oidc/jwks/rsa.2048.key:
+	@echo "Creating RSA key"
+	mkdir -p config/secrets/oidc/jwks
+	openssl genrsa -out config/secrets/oidc/jwks/rsa.2048.key 2048
 
-rebuild:
-	@echo "Rebuilding docker image"
-	docker build -t local/$(SERVICENAME):latest .
-
-adminer: check-traefik
-	docker compose up -d adminer
-
-database:
-	docker compose up -d --force-recreate db
-
-dev: check-traefik
+dev: check-traefik config/secrets/oidc/jwks/rsa.2048.key
 	@echo "Starting DEV Server"
-	docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --force-recreate --remove-orphans
+	docker compose up -d --force-recreate --remove-orphans
 
 prod: check-traefik
 	@echo "Starting Production Server"

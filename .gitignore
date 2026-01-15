@@ -1,3 +1,4 @@
 .env
 config/keys
 config/secrets
+docker/
