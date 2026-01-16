@@ -6,11 +6,9 @@ services:
     volumes:
       - ./config:/config:ro
     networks:
-      default:
-      traefik:
-        aliases:
-          - sso.${DOMAINNAME}
-      ldap:
+      - default
+      - traefik
+      - ldap
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.authelia.rule=Host(`sso.${DOMAINNAME}`)'
