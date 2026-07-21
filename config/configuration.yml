@@ -81,7 +81,7 @@ identity_providers:
     clients:
       - client_id: paperless
         client_name: Paperless
-        client_secret: '$pbkdf2-sha512$310000$jhKEKG9fPiTzasuQJ2tr5g$C7GOhzoL0D7c64hlmCq0poC5CUARN3b7zKNm6dAo7R9fBDqNdy4duU3UxqrU5dZh.rlmQ5M2uW5l3geOnjLcCA'
+        client_secret: '{{ secret "/config/secrets/oidc/clients/paperless" }}'
         public: false
         redirect_uris:
           - https://paperless.{{ env "DOMAINNAME" }}/accounts/oidc/authelia/login/callback/
@@ -95,7 +95,7 @@ identity_providers:
 
       - client_id: vikunja
         client_name: Vikunja
-        client_secret: '$pbkdf2-sha512$310000$t7n/rKN4K.PSS0ZTbKOi2w$ZlDO/9dLw/DdjcywSoqtZvG2bdsjHAVOCOUSojzhnBSkUqdkw9418c90MjfdEZmslHfuDIiqvdKymRAbTqBcxw'
+        client_secret: '{{ secret "/config/secrets/oidc/clients/vikunja" }}'
         public: false
         redirect_uris:
           - https://tasks.{{ env "DOMAINNAME" }}/auth/openid/authelia
@@ -109,7 +109,7 @@ identity_providers:
 
       - client_id: listmonk
         client_name: Listmonk
-        client_secret: '$pbkdf2-sha512$310000$kRYbrVxIRLs05fpBxWnHAg$BQhM.02g075fK2uxPtlXJanqh6yyuDbYC2Ybr.JxvmPQGKjkNpUCJNWOjTkKFNbmm8BWYTjBOrCRK3hizd6UIw'
+        client_secret: '{{ secret "/config/secrets/oidc/clients/listmonk" }}'
         public: false
         redirect_uris:
           - https://listmonk.{{ env "DOMAINNAME" }}/auth/oidc
@@ -128,7 +128,7 @@ identity_providers:
 
       - client_id: outline
         client_name: Outline
-        client_secret: $pbkdf2-sha512$310000$hsGOwPixAQvtc2U0kNRtkg$862jrdsi6nImDi5Y7qo2BTDpm8fVAxZ1QjYsXHNlu5WT0FlBMbjXBuRBIYpLbE.TdIQkSk5g9dF1uQVRTZ8fwA
+        client_secret: '{{ secret "/config/secrets/oidc/clients/outline" }}'
         public: false
         redirect_uris:
           - https://wiki.{{ env "DOMAINNAME" }}/auth/oidc.callback
