@@ -3,6 +3,7 @@
 
 server:
   address: 'tcp://:9091'
+  asset_path: '/config/assets'
 
 log:
   level: 'debug'
@@ -18,7 +19,7 @@ authentication_backend:
     base_dn: 'dc=mind-hochschul-netzwerk,dc=de'
     user: 'cn=admin,dc=mind-hochschul-netzwerk,dc=de'
     additional_users_dn: 'ou=people'
-    users_filter: '(&(|({username_attribute}={input})(mail={input}))(objectClass=person))'
+    users_filter: '(&(|({username_attribute}={input})(mail={input}))(objectClass=inetOrgPerson))'
     additional_groups_dn: 'ou=groups'
     groups_filter: '(&(member={dn})(objectclass=groupOfNames))'
     attributes:
@@ -26,10 +27,12 @@ authentication_backend:
       username: 'cn'
       distinguished_name: 'distinguishedName'
       family_name: 'sn'
+      display_name: 'givenName'
       given_name: 'givenName'
       mail: 'mail'
   password_reset:
     disable: false
+    custom_url: 'https://mitglieder.{{ env "DOMAINNAME" }}/lost-password'
   password_change:
     disable: false
 
@@ -37,6 +40,8 @@ access_control:
   default_policy: 'one_factor'
   rules:
     - domain: 'sso.{{ env "DOMAINNAME" }}'
+      policy: 'one_factor'
+    - domain: 'mitglieder.{{ env "DOMAINNAME" }}'
       policy: 'one_factor'
     - domain: 'paperless.{{ env "DOMAINNAME" }}'
       policy: 'two_factor'
@@ -50,6 +55,7 @@ session:
       authelia_url: 'https://sso.{{ env "DOMAINNAME" }}'
       expiration: '1 hour'
       inactivity: '5 minutes'
+      default_redirection_url: 'https://mitglieder.{{ env "DOMAINNAME" }}/'
 
   redis:
     host: 'redis'
