@@ -41,13 +41,12 @@ access_control:
   rules:
     - domain: 'sso.{{ env "DOMAINNAME" }}'
       policy: 'one_factor'
-    - domain: 'mitglieder.{{ env "DOMAINNAME" }}'
-      policy: 'one_factor'
     - domain: 'paperless.{{ env "DOMAINNAME" }}'
       policy: 'two_factor'
       subject:
       - ['group:finanzteam']
       - ['group:vorstand']
+
 session:
   cookies:
     - name: 'authelia_session'
@@ -86,6 +85,12 @@ identity_providers:
         - 'userinfo'
       allowed_origins_from_client_redirect_uris: true
     minimum_parameter_entropy: 4
+    authorization_policies:
+      aufnahme:
+        default_policy: 'deny'
+        rules:
+          - policy: 'one_factor'
+            subject: ['group:aufnahme']
     clients:
       - client_id: paperless
         client_name: Paperless
@@ -160,4 +165,18 @@ identity_providers:
           - email
           - profile
         authorization_policy: one_factor
+        consent_mode: implicit
+
+      - client_id: aufnahme
+        client_name: Aufnahmetool
+        client_secret: {{ secret "/config/secrets/oidc/clients/aufnahme" }}
+        public: false
+        redirect_uris:
+          - https://aufnahme.{{ env "DOMAINNAME" }}/login
+        scopes:
+          - openid
+          - email
+          - profile
+          - groups
+        authorization_policy: aufnahme
         consent_mode: implicit
