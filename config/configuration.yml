@@ -19,7 +19,8 @@ authentication_backend:
     base_dn: 'dc=mind-hochschul-netzwerk,dc=de'
     user: 'cn=admin,dc=mind-hochschul-netzwerk,dc=de'
     additional_users_dn: 'ou=people'
-    users_filter: '(&(|({username_attribute}={input})(mail={input}))(objectClass=inetOrgPerson))'
+    # employeeType=1 <=> login disabled
+    users_filter: '(&(|({username_attribute}={input})(mail={input}))(objectClass=inetOrgPerson)(!(employeeType=1)))'
     additional_groups_dn: 'ou=groups'
     groups_filter: '(&(member={dn})(objectclass=groupOfNames))'
     attributes:
@@ -27,7 +28,7 @@ authentication_backend:
       username: 'cn'
       distinguished_name: 'distinguishedName'
       family_name: 'sn'
-      display_name: 'givenName'
+      display_name: 'displayName'
       given_name: 'givenName'
       mail: 'mail'
   password_reset:
