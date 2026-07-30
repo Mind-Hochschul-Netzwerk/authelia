@@ -182,3 +182,15 @@ identity_providers:
           - groups
         authorization_policy: aufnahme
         consent_mode: implicit
+
+      - client_id: listig
+        client_name: Listig
+        client_secret: {{ secret "/config/secrets/oidc/clients/listig" }}
+        public: false
+        redirect_uris:
+          - https://lists.{{ env "DOMAINNAME" }}/_/login/oidc
+        scopes:
+          - openid
+          - email
+        authorization_policy: one_factor
+        consent_mode: implicit

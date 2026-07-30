@@ -13,7 +13,7 @@ config/secrets/oidc/jwks/rsa.2048.key:
 # Dev-only OIDC client secrets. Never used in prod: on the prod server these
 # files are created once by hand with the real hashes and are never
 # regenerated, so this rule only ever fires for local dev setups.
-DEV_OIDC_CLIENTS := paperless vikunja listmonk outline mitglieder aufnahme
+DEV_OIDC_CLIENTS := paperless vikunja listmonk outline mitglieder aufnahme listig
 DEV_OIDC_CLIENT_SECRET := insecure-dev-secret
 
 config/secrets/oidc/clients/%:
