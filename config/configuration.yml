@@ -194,3 +194,18 @@ identity_providers:
           - email
         authorization_policy: one_factor
         consent_mode: implicit
+
+      - client_id: helios
+        client_name: Wahlsystem
+        client_secret: {{ secret "/config/secrets/oidc/clients/helios" }}
+        public: false
+        redirect_uris:
+          - https://wahl.{{ env "DOMAINNAME" }}/auth/after/
+        scopes:
+          - openid
+          - email
+          - profile
+          - groups
+        authorization_policy: one_factor
+        consent_mode: implicit
+        token_endpoint_auth_method: client_secret_post
