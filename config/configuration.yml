@@ -47,6 +47,8 @@ access_control:
       subject:
       - ['group:finanzteam']
       - ['group:vorstand']
+    - domain: 'mail.{{ env "DOMAINNAME" }}'
+      policy: 'two_factor'
 
 session:
   cookies:
