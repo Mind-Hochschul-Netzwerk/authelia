@@ -93,7 +93,7 @@ identity_providers:
         default_policy: 'deny'
         rules:
           - policy: 'one_factor'
-            subject: ['group:aufnahme']
+            subject: ['group:aufnahme', 'group:aktivierung']
     clients:
       - client_id: paperless
         client_name: Paperless
